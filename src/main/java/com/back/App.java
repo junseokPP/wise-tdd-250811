@@ -24,10 +24,10 @@ public class App {
                     String author = sc.nextLine();
                 }
                 case "종료" ->{
-                    break;
+                    return;
                 }
             }
-            
+
         }
     }
 }

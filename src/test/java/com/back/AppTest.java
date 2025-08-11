@@ -10,7 +10,7 @@ public class AppTest {
     @Test
     @DisplayName("'== 명언 앱 ==' 출력")
     void t1(){
-        String out = AppTestRunner.run("종료");
+        String out = AppTestRunner.run("");
         assertThat(out).contains("==명언 앱==");
     }
     @Test

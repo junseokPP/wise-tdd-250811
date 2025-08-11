@@ -1,8 +1,32 @@
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        experimet1();
+//        experimet1();
+        experimet2();
+    }
+
+    private static void experimet2() {
+        System.out.println("안녕하세요");
+
+        PrintStream originalOut = System.out;
+
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        PrintStream printStream = new PrintStream(outputStream);
+
+        System.setOut(printStream);
+
+        System.out.println("하하하");
+
+        String outstr = outputStream.toString();
+        System.setOut(originalOut);
+        printStream.close();
+
+        System.out.println(outstr);
+
+
     }
 
     public static void experimet1(){

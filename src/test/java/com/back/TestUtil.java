@@ -1,3 +1,5 @@
+package com.back;
+
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.PrintStream;
@@ -6,7 +8,7 @@ import java.util.Scanner;
 public class TestUtil {
 
     private static PrintStream ORIGINAL_OUT= System.out;
-private static PrintStream CURRENT_OUT= System.out;
+    private static PrintStream CURRENT_OUT= System.out;
 
     public static Scanner genScanner(String input) {
         return new Scanner(input);

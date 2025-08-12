@@ -1,28 +1,28 @@
 package com.back.domain.wiseSaying.service;
 
 import com.back.AppContext;
-import com.back.domain.wiseSaying.WiseSayingRepository.WiseSayingRepository;
 import com.back.domain.wiseSaying.entity.WiseSaying;
+import com.back.domain.wiseSaying.repository.WiseSayingRepository;
 
 import java.util.List;
 
 public class WiseSayingService {
 
-    private  WiseSayingRepository wiseSayingRepository;
+    private WiseSayingRepository wiseSayingRepository;
 
-    public WiseSayingService(){
+    public WiseSayingService() {
         this.wiseSayingRepository = AppContext.wiseSayingRepository;
     }
-    public WiseSaying write(String saying, String author) {
 
-        WiseSaying wiseSaying = new WiseSaying(saying,author);
+    public WiseSaying write(String saying, String author) {
+        WiseSaying wiseSaying = new WiseSaying(saying, author);
         wiseSayingRepository.save(wiseSaying);
 
         return wiseSaying;
     }
 
-    public List<WiseSaying> findListDesc() {
-        return wiseSayingRepository.findListDesc();
+    public List<WiseSaying> findListDesc(String kw) {
+        return wiseSayingRepository.findListDesc(kw);
     }
 
     public boolean delete(int id) {
@@ -30,10 +30,11 @@ public class WiseSayingService {
     }
 
     public WiseSaying findByIdOrNull(int id) {
-        return wiseSayingRepository.findByIdOrNUll(id);
+        return wiseSayingRepository.findByIdOrNull(id);
     }
 
     public void modify(WiseSaying wiseSaying, String newSaying, String newAuthor) {
+
         wiseSaying.setSaying(newSaying);
         wiseSaying.setAuthor(newAuthor);
 

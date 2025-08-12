@@ -1,7 +1,7 @@
 package com.back;
 
-import com.back.domain.wiseSaying.WiseSayingRepository.WiseSayingRepository;
 import com.back.domain.wiseSaying.controller.WiseSayingController;
+import com.back.domain.wiseSaying.repository.WiseSayingRepository;
 import com.back.domain.wiseSaying.service.WiseSayingService;
 import com.back.system.SystemController;
 
@@ -10,20 +10,22 @@ import java.util.Scanner;
 public class AppContext {
 
     public static Scanner sc;
-    public static WiseSayingController wiseSayingController;
-    public static WiseSayingService wiseSayingService ;
-    public static WiseSayingRepository wiseSayingRepository ;
     public static SystemController systemController;
+    public static WiseSayingController wiseSayingController;
+    public static WiseSayingService wiseSayingService;
+    public static WiseSayingRepository wiseSayingRepository;
 
-    public static void init(Scanner sc){
-        AppContext.sc = new Scanner(System.in);
+    public static void init(Scanner _sc) {
+        AppContext.sc = _sc;
         AppContext.wiseSayingRepository = new WiseSayingRepository();
-        AppContext.wiseSayingService = new WiseSayingService(); // ← 주입
+        AppContext.wiseSayingService = new WiseSayingService();
+        AppContext.wiseSayingController = new WiseSayingController();
         AppContext.systemController = new SystemController();
-        AppContext.wiseSayingController = new WiseSayingController(sc); // ← 주입
     }
 
-    public static void init(){
+    public static void init() {
         init(new Scanner(System.in));
     }
+
+
 }

@@ -6,21 +6,21 @@ import com.back.system.SystemController;
 import java.util.Scanner;
 
 public class App {
+
     private Scanner sc;
     private WiseSayingController wiseSayingController;
     private SystemController systemController;
 
     public App() {
         this.sc = AppContext.sc;
-        wiseSayingController = AppContext.wiseSayingController;
+        wiseSayingController= AppContext.wiseSayingController;
         systemController = AppContext.systemController;
     }
 
-    public void run(){
-        System.out.println("==명언 앱==");
+    public void run() {
+        System.out.println("== 명언 앱 ==");
 
-
-        while(true){
+        while (true) {
             System.out.print("명령) ");
             String cmd = sc.nextLine();
 
@@ -28,24 +28,15 @@ public class App {
             String action = rq.getActionName();
 
             switch (action) {
-                case "등록" -> {
-                    wiseSayingController.actionAdd();
-                }
-                case "목록" -> {
-                    wiseSayingController.actionList();
-                }
-                case "삭제" -> {
-                    wiseSayingController.actionDelete(rq);
-                }
-                case "수정" -> {
-                    wiseSayingController.actionModify(rq);
-                }
+                case "등록" -> wiseSayingController.actionAdd();
+                case "목록" -> wiseSayingController.actionList(rq);
+                case "삭제" -> wiseSayingController.actionDelete(rq);
+                case "수정" -> wiseSayingController.actionModify(rq);
                 case "종료" -> {
                     systemController.actionExit();
-                    return ;
+                    return;
                 }
             }
-
         }
     }
 

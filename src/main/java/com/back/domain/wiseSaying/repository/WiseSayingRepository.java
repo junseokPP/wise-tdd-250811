@@ -1,4 +1,4 @@
-package com.back.domain.wiseSaying.WiseSayingRepository;
+package com.back.domain.wiseSaying.repository;
 
 import com.back.domain.wiseSaying.entity.WiseSaying;
 
@@ -10,8 +10,8 @@ public class WiseSayingRepository {
     private List<WiseSaying> wiseSayings = new ArrayList<>();
     private int lastId = 0;
 
-    public WiseSaying save(WiseSaying wiseSaying){
-        if(wiseSaying.isNew()){
+    public WiseSaying save(WiseSaying wiseSaying) {
+        if(wiseSaying.isNew()) {
             wiseSaying.setId(++lastId);
             wiseSayings.add(wiseSaying);
         }
@@ -19,15 +19,19 @@ public class WiseSayingRepository {
         return wiseSaying;
     }
 
-    public List<WiseSaying> findListDesc() {
-        return wiseSayings.reversed();
+    public List<WiseSaying> findListDesc(String kw) {
+        return wiseSayings.stream()
+                .filter(w -> w.getSaying().contains(kw))
+                .toList()
+                .reversed();
     }
 
-    public boolean delete(int id){
-        return wiseSayings.removeIf(wiseSaying ->  wiseSaying.getId() == id);
+    public boolean delete(int id) {
+        return wiseSayings.removeIf(wiseSaying -> wiseSaying.getId() == id);
     }
 
-    public WiseSaying findByIdOrNUll(int id) {
+    public WiseSaying findByIdOrNull(int id) {
+
         return wiseSayings.stream()
                 .filter(wiseSaying -> wiseSaying.getId() == id)
                 .findFirst()

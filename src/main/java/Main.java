@@ -12,6 +12,7 @@ public class Main {
         new App().run();     // 같은 스캐너 전달
 //        experimet1();
 //        experimet2();
+
     }
 
     private static void experimet2() {

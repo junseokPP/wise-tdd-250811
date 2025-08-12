@@ -13,8 +13,7 @@ public class WiseSayingController {
     private Scanner sc;
     private WiseSayingService wiseSayingService;
 
-
-    public WiseSayingController(Scanner sc) {
+    public WiseSayingController() {
         this.sc = AppContext.sc;
         this.wiseSayingService = AppContext.wiseSayingService;
     }
@@ -25,31 +24,33 @@ public class WiseSayingController {
         System.out.print("작가 : ");
         String author = sc.nextLine();
 
-        WiseSaying wiseSaying = wiseSayingService.write(saying,author);
+        WiseSaying wiseSaying = wiseSayingService.write(saying, author);
 
         System.out.println("%d번 명언이 등록되었습니다.".formatted(wiseSaying.getId()));
     }
 
+    public void actionList(Rq rq) {
 
-    public void actionList(){
+        String kw = rq.getParam("keyword", "");
+
         System.out.println("번호 / 작가 / 명언");
         System.out.println("----------------------");
 
-        List<WiseSaying> wiseSayings = wiseSayingService.findListDesc();
+        List<WiseSaying> wiseSayings = wiseSayingService.findListDesc(kw);
 
         wiseSayings
-                .reversed()
                 .stream()
                 .forEach(wiseSaying -> System.out.printf("%d / %s / %s%n",
                         wiseSaying.getId(), wiseSaying.getAuthor(), wiseSaying.getSaying()));
+
     }
 
     public void actionDelete(Rq rq) {
 
-        int id = rq.getParamAsInt("id",-1);
+        int id = rq.getParamAsInt("id", -1);
         boolean deleted = wiseSayingService.delete(id);
 
-        if(!deleted){
+        if(!deleted) {
             System.out.println("%d번 명언은 존재하지 않습니다.".formatted(id));
             return;
         }
@@ -58,11 +59,12 @@ public class WiseSayingController {
     }
 
     public void actionModify(Rq rq) {
-        int id = rq.getParamAsInt("id",-1);
+
+        int id = rq.getParamAsInt("id", -1);
 
         WiseSaying wiseSaying = wiseSayingService.findByIdOrNull(id);
 
-        if(wiseSaying == null){
+        if(wiseSaying == null) {
             System.out.println("%d번 명언은 존재하지 않습니다.".formatted(id));
             return;
         }
@@ -72,8 +74,7 @@ public class WiseSayingController {
         System.out.println("작가(기존) : %s".formatted(wiseSaying.getAuthor()));
         String newAuthor = sc.nextLine();
 
-        wiseSayingService.modify(wiseSaying,newSaying,newAuthor);
-
+        wiseSayingService.modify(wiseSaying, newSaying, newAuthor);
 
     }
 }

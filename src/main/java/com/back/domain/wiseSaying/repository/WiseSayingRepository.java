@@ -35,7 +35,8 @@ public class WiseSayingRepository {
         return wiseSayings.reversed().stream()
                 .filter(w -> w.getSaying().contains(kw))
                 .limit(pageSize)
-                .toList();
+                .toList()
+                .reversed();
     }
 
     public List<WiseSaying> findByAuthorContainingDesc(String kw,int pageSize,int pageNo) {
@@ -43,13 +44,15 @@ public class WiseSayingRepository {
         return wiseSayings.reversed().stream()
                 .filter(w -> w.getAuthor().contains(kw))
                 .limit(pageSize)
-                .toList();
+                .toList()
+                .reversed();
     }
 
     public List<WiseSaying> findByContentContainingOrAuthorContainingDesc(String kw,int pageSize,int pageNo) {
         return wiseSayings.reversed().stream()
                 .filter(w -> w.getAuthor().contains(kw) || w.getSaying().contains(kw))
                 .limit(pageSize)
-                .toList();
+                .toList()
+                .reversed();
     }
 }

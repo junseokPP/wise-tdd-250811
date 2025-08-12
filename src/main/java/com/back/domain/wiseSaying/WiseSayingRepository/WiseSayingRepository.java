@@ -26,4 +26,11 @@ public class WiseSayingRepository {
     public boolean delete(int id){
         return wiseSayings.removeIf(wiseSaying ->  wiseSaying.getId() == id);
     }
+
+    public WiseSaying findByIdOrNUll(int id) {
+        return wiseSayings.stream()
+                .filter(wiseSaying -> wiseSaying.getId() == id)
+                .findFirst()
+                .orElse(null);
+    }
 }

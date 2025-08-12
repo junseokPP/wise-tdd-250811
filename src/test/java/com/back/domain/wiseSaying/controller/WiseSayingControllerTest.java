@@ -91,7 +91,7 @@ public class WiseSayingControllerTest {
 
     }
     @Test
-    @DisplayName("삭제?id=1")
+    @DisplayName("삭제?id=1 두번 요청에 대한 예외 처리")
     void t6(){
 
         String out = AppTestRunner.run("""
@@ -103,14 +103,28 @@ public class WiseSayingControllerTest {
                 작자미상
                 삭제?id=1
                 삭제?id=1
-                목록
                 """);
         System.out.println(out);
 
         assertThat(out)
-                .contains("1번 명언이 삭제되었습니다.")
-                .contains("2 / 작자미상 / 과거에 집착하지 마라.")
-                .doesNotContain("1 / 작자미상 / 현재를 사랑하라."); //test5 삭제 작성
+                .contains("1번 명언이 삭제되었습니다.") //test5 삭제 작성
+                .contains("1번 명언은 존재하지 않습니다."); //test5 삭제 작성
+
+    }
+    @Test
+    @DisplayName("수정id=3, 없는 명언에 대한 수정요청")
+    void t7(){
+
+        String out = AppTestRunner.run("""
+                등록
+                현재를 사랑하라.
+                작자미상
+                수정id=3
+                """);
+        System.out.println(out);
+
+        assertThat(out)
+                .doesNotContain("3번 명언은 존재하지 않습니다.");
 
     }
 }

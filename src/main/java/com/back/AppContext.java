@@ -16,7 +16,7 @@ public class AppContext {
     public static SystemController systemController;
 
     public static void init(Scanner sc){
-        AppContext.sc = sc;
+        AppContext.sc = new Scanner(System.in);
         AppContext.wiseSayingRepository = new WiseSayingRepository();
         AppContext.wiseSayingService = new WiseSayingService(); // ← 주입
         AppContext.systemController = new SystemController();

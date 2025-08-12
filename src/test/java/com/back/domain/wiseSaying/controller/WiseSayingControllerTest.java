@@ -119,33 +119,29 @@ public class WiseSayingControllerTest {
                 등록
                 현재를 사랑하라.
                 작자미상
-                수정id=3
+                수정?id=3
                 """);
-        System.out.println(out);
 
         assertThat(out)
-                .doesNotContain("3번 명언은 존재하지 않습니다.");
+                .contains("3번 명언은 존재하지 않습니다.");
 
     }
     @Test
     @DisplayName("수정id=1")
-    void t8(){
-
+    void t8() {
         String out = AppTestRunner.run("""
                 등록
                 현재를 사랑하라.
                 작자미상
-                수정id=1
+                수정?id=1
                 너 자신을 알라
                 소크라테스
                 목록
                 """);
-        System.out.println(out);
 
         assertThat(out)
                 .doesNotContain("1 / 작자미상 / 현재를 사랑하라.")
-                .contains("1 / 소크라테스 / 너자신을 알라");
-
+                .contains("1 / 소크라테스 / 너 자신을 알라");
 
     }
 }

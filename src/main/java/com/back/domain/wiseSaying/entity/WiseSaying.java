@@ -35,11 +35,6 @@ public class WiseSaying {
     }
 
     public boolean isNew() {
-        if(saying == null){
-            return false;
-        }
-        else {
-            return true;
-        }
+        return id == 0;
     }
 }

@@ -1,4 +1,5 @@
 import com.back.App;
+import com.back.AppContext;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
@@ -7,9 +8,8 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
 
-        new App(new Scanner(System.in))
-                .run();
-
+        AppContext.init();   // 받은 스캐너로 컨텍스트 초기화
+        new App().run();     // 같은 스캐너 전달
 //        experimet1();
 //        experimet2();
     }

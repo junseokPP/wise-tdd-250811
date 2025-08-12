@@ -1,6 +1,7 @@
 package com.back.domain.wiseSaying.controller;
 
 import com.back.AppContext;
+import com.back.Rq;
 import com.back.domain.wiseSaying.entity.WiseSaying;
 import com.back.domain.wiseSaying.service.WiseSayingService;
 
@@ -41,5 +42,18 @@ public class WiseSayingController {
                 .stream()
                 .forEach(wiseSaying -> System.out.printf("%d / %s / %s%n",
                         wiseSaying.getId(), wiseSaying.getAuthor(), wiseSaying.getSaying()));
+    }
+
+    public void actionDelete(Rq rq) {
+
+        int id = rq.getParamAsInt("id",-1);
+        boolean deleted = wiseSayingService.delete(id);
+
+        if(!deleted){
+            System.out.println("%d번 명언은 존재하지 않습니다.".formatted(id));
+            return;
+        }
+
+        System.out.println("%d번 명언이 삭제되었습니다.".formatted(id));
     }
 }

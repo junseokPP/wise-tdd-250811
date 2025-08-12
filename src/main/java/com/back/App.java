@@ -24,16 +24,22 @@ public class App {
             System.out.print("명령) ");
             String cmd = sc.nextLine();
 
-            switch (cmd){
-                case "등록" ->{
+            Rq rq = new Rq(cmd);
+            String action = rq.getActionName();
+
+            switch (action) {
+                case "등록" -> {
                     wiseSayingController.actionAdd();
                 }
-                case "목록" ->{
+                case "목록" -> {
                     wiseSayingController.actionList();
                 }
-                case "종료" ->{
+                case "삭제" -> {
+                    wiseSayingController.actionDelete(rq);
+                }
+                case "종료" -> {
                     systemController.actionExit();
-                    return;
+                    return ;
                 }
             }
 

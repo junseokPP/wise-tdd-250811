@@ -201,7 +201,7 @@ public class WiseSayingControllerTest {
     }
 
     @Test
-    @DisplayName("목록 : 한 페이지에 최신 명언 5개 출력")
+    @DisplayName("목록: 한 페이지에 최신 명언 5개 출력")
     void t12() {
 
         String input = IntStream.rangeClosed(1, 10)
@@ -209,7 +209,7 @@ public class WiseSayingControllerTest {
                         등록
                         명언 %d
                         작가 %d
-                        """.formatted(num,num))
+                        """.formatted(num, num))
                 .collect(Collectors.joining("\n"));
 
         input += "목록\n";
@@ -228,6 +228,7 @@ public class WiseSayingControllerTest {
                 .doesNotContain("2 / 작가 2 / 명언 2")
                 .doesNotContain("1 / 작가 1 / 명언 1");
     }
+
     @Test
     @DisplayName("목록?page=2")
     void t13() {
@@ -237,7 +238,7 @@ public class WiseSayingControllerTest {
                         등록
                         명언 %d
                         작가 %d
-                        """.formatted(num,num))
+                        """.formatted(num, num))
                 .collect(Collectors.joining("\n"));
 
         input += "목록?page=2\n";
@@ -255,5 +256,7 @@ public class WiseSayingControllerTest {
                 .contains("3 / 작가 3 / 명언 3")
                 .contains("2 / 작가 2 / 명언 2")
                 .contains("1 / 작가 1 / 명언 1");
+
+
     }
 }

@@ -55,5 +55,7 @@ public class UtilFileTest {
 
         //then
         assertThat(content).isEqualTo("hello world");
+
+        Util.file.exists(filePath);
     }
 }
